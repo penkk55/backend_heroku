@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 8081
 
 app.get("/", (req, res)=>{
   res.json({
-    username: "god",
+    username: "godwqdqwdqwdqw",
     paswword: "666"
   })
 
@@ -27,7 +27,10 @@ app.get("/", (req, res)=>{
 //   res.json({result: "ok", data:[1,2,3,4,5]})
 // })
 app.post("/api/login", (req, res)=>{
-  res.json({
+  let username = req.body.username
+  let password = req.body.password
+
+  return res.json({
     username: "god",
     paswword: "666"
   })
