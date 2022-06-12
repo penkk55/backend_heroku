@@ -32,13 +32,32 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/:aa", (req, res)=>{
+app.get("/", (req, res)=>{
   res.json({
-    username: "god",
-    password: "666"
+    data:[
+    {
+      id: "0",
+      username: "god",
+      password: "666"
+    },
+    {
+      id: "1",
+      username: "penk",
+      password: "1234"
+    },
+    {
+      id: "2",
+      username: "not",
+      password: "1234"
+    },
+    {
+      id: "3",
+      username: "nut",
+      password: "1234"
+    }
+    ]  
   })
   // res.send('test' + req.params.aa)
-
 })
 app.use((req, res, next)=>{
     res.header('Access-Control-Allow-Origin', '*');
@@ -53,13 +72,13 @@ app.post("/api/login", (req, res)=>{
   let password = req.body.password
   // res.send(req.body)
   let jwtSecretKey = process.env.JWT_SECRET_KEY;
-  let data = {
+  let dataJwt = {
     time: Date(),
     userId: 12,
 }
-  const token = jwt.sign(data, jwtSecretKey);
+  const token = jwt.sign(dataJwt, jwtSecretKey);
   
-  if(!username || !password) {
+  if((username !="god" && username !="penk" &&username != "nut" && username !="not") || (password != "666" && password !="1234")) {
     return res.status(400).send({ 
       status: "error",
       message: "Login failed"
