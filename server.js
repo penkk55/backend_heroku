@@ -22,7 +22,11 @@ app.get("/", (req, res)=>{
   })
 
 })
-
+app.use((req, res, next)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+})
 // app.put("/api/login", (req, res)=>{
 //   res.json({result: "ok", data:[1,2,3,4,5]})
 // })
