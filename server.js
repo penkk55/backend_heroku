@@ -34,10 +34,13 @@ app.post("/api/login", (req, res)=>{
   let username = req.body.username
   let password = req.body.password
 
-  return res.json({
-    username: "god",
-    paswword: "666"
-  })
+  if(username || password) {
+    return res.json({
+      username: "god",
+      paswword: "666"
+    })
+  }
+  
 })
 
 app.listen(PORT,()=>{
