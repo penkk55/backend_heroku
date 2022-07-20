@@ -5,10 +5,6 @@ const loginCtrl = require('../controller/login')
 // const app = express()
 module.exports = router
 
-const scan =require('../../app') 
-console.log('---->ssssssssAPILogin',scan.scan)
-
-
 // router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({ extended: true }));
 // router.use((req, res, next)=>{
@@ -27,7 +23,7 @@ router.post('/loginNew4', (req, res) => {
   // var animal = req.animal_config;
   // res.send(animal.name + ' says ' + animal.says);
 })
-console.log('router-api')
+// console.log('router-api')
 router.post('/loginNewV1',[express.json({ limit: '10mb' })], loginCtrl.login)
 
 // router.use('/loginNew', require('../controller/login'))
