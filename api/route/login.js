@@ -24,6 +24,21 @@ router.post('/loginNew4', (req, res) => {
   // res.send(animal.name + ' says ' + animal.says);
 })
 // console.log('router-api')
+/**
+ * @swagger
+ * /loginNewV1:
+ *   post:
+ *     description: Get all books
+ *     parameters:
+ *      - name: title
+ *        description: title of the book
+ *        in: formData
+ *        required: true
+ *        type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
 router.post('/loginNewV1',[express.json({ limit: '10mb' })], loginCtrl.login)
 
 // router.use('/loginNew', require('../controller/login'))

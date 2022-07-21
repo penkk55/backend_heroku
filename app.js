@@ -10,7 +10,31 @@ var bodyParser = require('body-parser');
 // const jwt = require('jsonwebtoken');
 //  dotenv.config(); 
 
+// swagger
+const swaggerJsDoc =require('swagger-jsdoc')
+const swaggerUI =require('swagger-ui-express')
 
+const swaggerOptions ={
+  swaggerDefinition: {
+    info: {
+      title: "SSRU BACKEND API",
+      version:"1.0.0",
+    },
+    servers:[
+      {
+        url:process.env.PORT || 8082
+      }
+      
+    ],
+  },
+  apis: ["/api/route/login.js","/api/index.js","app.js"],
+  // apis:["/api/index.js"]
+  
+}
+ 
+
+ const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 
 app.use(bodyParser.json());
@@ -21,11 +45,55 @@ app.use((req, res, next)=>{
   res.header('Access-Control-Allow-headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 })
-
+/**
+ * @swagger
+ * /api/loginNew/loginNewV1:
+ *   post:
+ *     description: Get all books
+ *     parameters:
+ *      - name: title
+ *        description: title of the book
+ *        in: formData
+ *        required: true
+ *        type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
+/**
+ * @swagger
+ * /api/swag:
+ *   get:
+ *     description: Get all books
+ *     parameters:
+ *      - name: title
+ *        description: title of the book
+ *        in: formData
+ *        required: true
+ *        type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
 app.use('/api',(require('./api/index')));
 
 // แบบไม่ทำ route 
 const loginCtrl = require('./api/controller/login')
+/**
+ * @swagger
+ * /api/loginNew0:
+ *   post:
+ *     description: Get all books
+ *     parameters:
+ *      - name: title
+ *        description: title of the book
+ *        in: formData
+ *        required: true
+ *        type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
  app.post('/api/loginNew0', [bodyParser.json({ limit: '10mb' })], loginCtrl.login)
 
 app.get('/', (req, res) => {
